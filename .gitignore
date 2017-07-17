@@ -50,3 +50,13 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Other
+.DS_Store
+._*
+.nfs.*
+.tmp.c
+.vscode
+server
+client
+tmp/
