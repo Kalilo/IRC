@@ -67,6 +67,10 @@
 /*
 ** Typedefs
 */
+typedef struct sockaddr_in		t_sock_addrin;
+typedef struct hostent			t_hostent;
+typedef struct sockaddr			t_sock_addr;
+typedef unsigned long long		t_ull;
 
 /*
 ** ----------\
