@@ -12,7 +12,8 @@
 
 NAME = server
 
-SRCS_NAME =		\
+SRCS_NAME =		init.c						\
+				main.c						\
 
 HEADER_NAMES =	server.h					\
 

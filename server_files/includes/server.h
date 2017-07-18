@@ -28,9 +28,17 @@
 */
 
 /*
-** defines
+** defined constants
 */
 # define MAX_CLIENTS	1024
+
+/*
+** shorthand
+*/
+# define MASTER_SOCK	g_env.main_sock.sock
+# define MASTER_OPT		g_env.main_sock.sock_opt
+# define MASTER_ADDR	g_env.main_sock.addr
+# define MASTER_ADDRLEN	g_env.main_sock.addrlen
 
 /*
 ** enums
@@ -43,6 +51,12 @@ typedef enum		e_msg_type
 	msg_command
 }					t_msg_type;
 
+typedef enum		e_bool
+{
+	false,
+	true
+}					t_bool;
+
 /*
 ** ----------\
 ** Structures |
@@ -53,12 +67,12 @@ typedef enum		e_msg_type
 ** linked lists
 */
 
-typedef struct		t_user
+typedef struct		s_user
 {
 	int				sock;
 	char			*nick;
 	t_sock_addr		machine;
-}					s_user;
+}					t_user;
 
 typedef struct		s_channel
 {
@@ -89,7 +103,8 @@ typedef struct		s_main_sock
 typedef struct		s_client_def
 {
 	int				new_sock;
-	s_user			client_sock[MAX_CLIENTS];
+	fd_set			read_fds;
+	t_user			client_sock[MAX_CLIENTS];
 }					t_client_def;
 
 /*
@@ -100,6 +115,7 @@ typedef struct		s_env
 	t_main_sock		main_sock;
 	t_client_def	clients;
 	t_msg			msg;
+	t_list			*channels;
 }					t_env;
 
 /*
@@ -125,8 +141,9 @@ extern t_env		g_env;
 */
 
 /*
-** file.c
+** init.c
 */
+char				init(int port);
 
 /*
 **                                /----------\                                **
