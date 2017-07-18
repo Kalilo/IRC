@@ -81,8 +81,22 @@
 */
 
 /*
-** file.c
+** error_quit.c
 */
+void	error_quit(char *str);
+void	exit_message(char *str);
+
+/*
+** ft_str_append.c
+*/
+void	ft_str_append(char **s1, char *s2);
+void	ft_str_append2(char *s1, char **s2);
+char	*ft_str_append3(char **s1, char **s2);
+
+/*
+** ft_swap_str.c
+*/
+void	ft_swap_str(char **s1, char **s2);
 
 /*
 ** Bonus Summary:
