@@ -22,27 +22,27 @@
 /*
 ** System
 */
-# include <sys/types.h>
-# include <sys/socket.h>
 # include <sys/mman.h>
-# include <sys/stat.h>
 # include <sys/select.h>
+# include <sys/socket.h>
+# include <sys/stat.h>
 # include <sys/time.h>
+# include <sys/types.h>
 
 /*
 ** Standard
 */
-# include <unistd.h>
-# include <stdlib.h>
 # include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 /*
 ** Uncommon
 */
-# include <signal.h>
+# include <arpa/inet.h>
 # include <fcntl.h>
 # include <netdb.h>
-# include <arpa/inet.h>
+# include <signal.h>
 
 /*
 ** Own Headers
