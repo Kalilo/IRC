@@ -14,7 +14,7 @@
 
 char	init(int port)
 {
-	if (port < 0 || port >= SHRT_MAX)
+	if (port <= 0 || SHRT_MAX <= port)
 		error_quit("Invalid port number given.");
 	ft_bzero(&g_env, sizeof(t_env));
 	if ((MASTER_SOCK = socket(AF_INET, SOCK_STREAM, 0)) == 0)
