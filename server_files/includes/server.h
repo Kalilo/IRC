@@ -46,6 +46,8 @@
 # define CLIENT_SOCK(x)	g_env.clients.client_sock[x].sock
 # define NEW_CLIENT_SOC	g_env.clients.new_sock
 
+# define MESSAGE		g_env.msg.msg
+
 /*
 ** enums
 */

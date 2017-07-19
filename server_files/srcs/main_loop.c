@@ -56,19 +56,20 @@ void	manage_clients(void)
 	while (++k < MAX_CLIENTS)
 	{
 		sd = CLIENT_SOCK(k);
-		// if (!FD_ISSET(sd, &CLIENT_READ_FD))
-		// {
-		// 	// if (get_next_line())
-
-		// 	ft_putendl("Client disconnected");
-		// 	close(sd);
-		// 	CLIENT_SOCK(k) = 0;
-		// }
-		// else
-		// {
-		// 	// manage the request
-		// 	ft_putendl_fd("Your request was recieved", sd);//temp
-		// }
+		if (sd && FD_ISSET(sd, &CLIENT_READ_FD))
+		{
+			if (get_next_line(sd, &MESSAGE) < 1)
+			{
+				ft_putendl("Client disconnected");
+				close(sd);
+				CLIENT_SOCK(k) = 0;
+			}
+			else
+			{
+				// manage the request
+				ft_putendl_fd("Your request was recieved", sd);//temp
+			}
+		}
 	}
 }
 
