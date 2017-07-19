@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_loop.c                                        :+:      :+:    :+:   */
+/*   prep_client_sockets.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/18 10:58:51 by khansman          #+#    #+#             */
-/*   Updated: 2017/07/18 10:58:53 by khansman         ###   ########.fr       */
+/*   Created: 2017/07/19 18:02:31 by khansman          #+#    #+#             */
+/*   Updated: 2017/07/19 18:02:34 by khansman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/server.h"
 
-void	main_loop(void)
+void	prep_client_sockets(void)
 {
-	while (true)
+	int		k;
+	int		sd;
+
+	k = -1;
+	FD_ZERO(&CLIENT_READ_FD);
+	FD_SET(MASTER_SOCK, &CLIENT_READ_FD);
+	MASTER_MAX_SD = MASTER_SOCK;
+	while (++k < MAX_CLIENTS)
 	{
-		prep_client_sockets();
-		g_env.active_sock = select(MASTER_MAX_SD + 1,
-			&CLIENT_READ_FD, NULL, NULL, NULL);
-		if (g_env.active_sock < 0)
-			error_quit("Failed to accept connection");//check that this works
-		if (FD_ISSET(MASTER_SOCK, &CLIENT_READ_FD))
-			accept_new_client();
-		else
-			NEW_CLIENT_SOC = 0;
-		manage_clients();
+		if ((sd = CLIENT_SOCK(k)) > 0)
+			FD_SET(sd, &CLIENT_READ_FD);
+		if (sd > MASTER_MAX_SD)
+			MASTER_MAX_SD = sd;
 	}
 }

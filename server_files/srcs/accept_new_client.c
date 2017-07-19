@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_loop.c                                        :+:      :+:    :+:   */
+/*   accept_new_client.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khansman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/18 10:58:51 by khansman          #+#    #+#             */
-/*   Updated: 2017/07/18 10:58:53 by khansman         ###   ########.fr       */
+/*   Created: 2017/07/19 18:02:47 by khansman          #+#    #+#             */
+/*   Updated: 2017/07/19 18:02:48 by khansman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/server.h"
 
-void	main_loop(void)
+void	accept_new_client(void)
 {
-	while (true)
-	{
-		prep_client_sockets();
-		g_env.active_sock = select(MASTER_MAX_SD + 1,
-			&CLIENT_READ_FD, NULL, NULL, NULL);
-		if (g_env.active_sock < 0)
-			error_quit("Failed to accept connection");//check that this works
-		if (FD_ISSET(MASTER_SOCK, &CLIENT_READ_FD))
-			accept_new_client();
-		else
-			NEW_CLIENT_SOC = 0;
-		manage_clients();
-	}
+	int		k;
+
+	k = -1;
+	if ((NEW_CLIENT_SOC = accept(MASTER_SOCK, (t_sock_addr *)&MASTER_ADDR,
+			(socklen_t *)&MASTER_ADDRLEN)) < 0)
+		error_quit("Failed to accept new client");
+	ft_putendl("New client connected.");
+	while (++k < MAX_CLIENTS)
+		if (!CLIENT_SOCK(k))
+		{
+			CLIENT_SOCK(k) = NEW_CLIENT_SOC;
+			break ;
+		}
 }

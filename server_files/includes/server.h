@@ -151,9 +151,29 @@ extern t_env		g_env;
 */
 
 /*
+** accept_new_client.c
+*/
+void				accept_new_client(void);
+
+/*
 ** init.c
 */
 char				init(int port);
+
+/*
+** main_loop.c
+*/
+void				main_loop(void);
+
+/*
+** manage_clients.c
+*/
+void				manage_clients(void);
+
+/*
+** prep_client_sockets.c
+*/
+void				prep_client_sockets(void);
 
 /*
 **                                /----------\                                **

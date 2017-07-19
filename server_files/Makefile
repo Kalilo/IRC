@@ -12,8 +12,12 @@
 
 NAME = server
 
-SRCS_NAME =		init.c						\
+SRCS_NAME =		accept_new_client.c			\
+				init.c						\
+				main_loop.c					\
 				main.c						\
+				manage_clients.c			\
+				prep_client_sockets.c		\
 
 HEADER_NAMES =	server.h					\
 
