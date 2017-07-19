@@ -39,6 +39,12 @@
 # define MASTER_OPT		g_env.main_sock.sock_opt
 # define MASTER_ADDR	g_env.main_sock.addr
 # define MASTER_ADDRLEN	g_env.main_sock.addrlen
+# define MASTER_MAX_SD	g_env.main_sock.max_sd
+
+# define CLIENT(x)		g_env.clients.client_sock[x]
+# define CLIENT_READ_FD	g_env.clients.read_fds
+# define CLIENT_SOCK(x)	g_env.clients.client_sock[x].sock
+# define NEW_CLIENT_SOC	g_env.clients.new_sock
 
 /*
 ** enums
@@ -97,6 +103,7 @@ typedef struct		s_main_sock
 	int				sock_opt;
 	int				sock;
 	int				addrlen;
+	int				max_sd;
 	t_sock_addrin	addr;
 }					t_main_sock;
 
@@ -115,6 +122,7 @@ typedef struct		s_env
 	t_main_sock		main_sock;
 	t_client_def	clients;
 	t_msg			msg;
+	int				active_sock;
 	t_list			*channels;
 }					t_env;
 
