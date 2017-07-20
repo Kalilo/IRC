@@ -24,7 +24,7 @@ char	valid_command(char *str)
 		return (1);
 	if (!ft_strncmp(str, "/msg ", 5))
 		return (1);
-	if (!ft_strncmp(str, "/connect ", 8))
+	if (!ft_strncmp(str, "/connect ", 9))
 		return (1);
 	return (0);
 }
