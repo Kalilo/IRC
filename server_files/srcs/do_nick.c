@@ -18,11 +18,20 @@
 
 char	do_nick(int sd, char *nick)
 {
+	int		k;
+
+	k = -1;
 	if (ft_strlen(nick) > 9)
 	{
 		MSG_ERROR = "Nicknames have to be less than 10 characters.";
 		return (0);
 	}
+	while (++k < MAX_CLIENTS)
+		if (!ft_strcmp(CLIENT(k).nick, nick))
+		{
+			MSG_ERROR = "Nickname already in use.";
+			return (0);
+		}
 	ft_strdel(&CLIENT(sd).nick);
 	CLIENT(sd).nick = ft_strdup(nick);
 	return (1);
