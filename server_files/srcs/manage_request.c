@@ -26,5 +26,6 @@ char	manage_request(int client)
 		return do_nick(client, MESSAGE + 6);
 	if (!ft_strcmp(MESSAGE, "/who"))
 		return do_who(client);
-	return (1);
+	MSG_ERROR = "UNKNOWN COMMAND\n";
+	return (0);
 }

@@ -31,9 +31,10 @@ void	manage_clients(void)
 			}
 			else
 			{
-				// printf("MESSAGE: '%s'\n", MESSAGE);//debug
-				// manage the request
-				ft_putendl_fd("Your request was recieved", sd);//temp
+				if (manage_request(k))
+					send(sd, "SUCCESS\n", 8, MSG_DONTWAIT);
+				else
+					send(sd, MSG_ERROR, sizeof(MSG_ERROR), MSG_DONTWAIT);
 				ft_strdel(&MESSAGE);
 			}
 		}
