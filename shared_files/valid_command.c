@@ -18,7 +18,9 @@ t_bool	valid_command(char *str)
 		return (b_true);
 	if (!ft_strncmp(str, "/join ", 6))
 		return (b_true);
-	if (!ft_strncmp(str, "/who ", 5))
+	if (!ft_strncmp(str, "/leave ", 7))
+		return (b_true);
+	if (!ft_strncmp(str, "/who", 4))
 		return (b_true);
 	if (!ft_strncmp(str, "/msg ", 5))
 		return (b_true);
