@@ -127,7 +127,7 @@ int		sock_gnl(const int fd, char **line);
 /*
 ** valid_command.c
 */
-t_bool	valid_command(char *str);
+char	valid_command(char *str);
 
 /*
 ** Bonus Summary:
