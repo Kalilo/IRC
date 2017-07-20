@@ -139,6 +139,36 @@ extern t_env		g_env;
 void				accept_new_client(void);
 
 /*
+** do_connect.c
+*/
+char				do_connect(int client, char *details);
+
+/*
+** do_join.c
+*/
+char				do_join(int client, char *channel);
+
+/*
+** do_leave.c
+*/
+char				do_leave(int client, char *channel);
+
+/*
+** do_msg.c
+*/
+char				do_msg(int client, char *msg_details);
+
+/*
+** do_nick.c
+*/
+char				do_nick(int client, char *nick);
+
+/*
+** do_who.c
+*/
+char				do_who(int client);
+
+/*
 ** init.c
 */
 char				init(int port);

@@ -13,6 +13,12 @@
 NAME = server
 
 SRCS_NAME =		accept_new_client.c			\
+				do_connect.c				\
+				do_join.c					\
+				do_leave.c					\
+				do_msg.c					\
+				do_nick.c					\
+				do_who.c					\
 				init.c						\
 				main_loop.c					\
 				main.c						\
