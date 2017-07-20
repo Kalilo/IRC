@@ -49,23 +49,6 @@
 # define MESSAGE		g_env.msg.msg
 
 /*
-** enums
-*/
-typedef enum		e_msg_type
-{
-	msg_none,
-	msg_direct,
-	msg_channel,
-	msg_command
-}					t_msg_type;
-
-typedef enum		e_bool
-{
-	false,
-	true
-}					t_bool;
-
-/*
 ** ----------\
 ** Structures |
 ** ----------/

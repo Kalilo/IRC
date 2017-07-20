@@ -73,6 +73,23 @@ typedef struct sockaddr			t_sock_addr;
 typedef unsigned long long		t_ull;
 
 /*
+** enums
+*/
+typedef enum		e_msg_type
+{
+	msg_none,
+	msg_direct,
+	msg_channel,
+	msg_command
+}					t_msg_type;
+
+typedef enum		e_bool
+{
+	b_false,
+	b_true
+}					t_bool;
+
+/*
 ** ----------\
 ** Structures |
 ** ----------/
@@ -106,6 +123,11 @@ void	ft_swap_str(char **s1, char **s2);
 ** sock_gnl.c
 */
 int		sock_gnl(const int fd, char **line);
+
+/*
+** valid_command.c
+*/
+t_bool	valid_command(char *str);
 
 /*
 ** Bonus Summary:

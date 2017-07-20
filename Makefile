@@ -16,6 +16,7 @@ SRCS_NAME =		error_quit.c	\
 				ft_str_append.c	\
 				ft_swap_str.c	\
 				sock_gnl.c		\
+				valid_command.c	\
 
 HEADER_NAMES =	shared.h		\
 
