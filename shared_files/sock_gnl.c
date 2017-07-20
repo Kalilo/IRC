@@ -30,7 +30,7 @@ int		sock_gnl(const int fd, char **line)
 		if (k < SOCK_GNL_BS)
 			break ;
 	}
-	if (k < 0)
+	if (k < 0 && *line == NULL)
 		return (-1);
 	if (*line == NULL)
 		return (0);
