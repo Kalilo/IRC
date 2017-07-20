@@ -18,5 +18,6 @@ int		main(int ac, char **av)
 	if (ac != 2)
 		exit_message("Usage: ./server <port>");
 	init(ft_atoi(av[1]));
+	main_loop();
 	return (0);
 }

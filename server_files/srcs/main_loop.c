@@ -20,7 +20,7 @@ void	main_loop(void)
 		g_env.active_sock = select(MASTER_MAX_SD + 1,
 			&CLIENT_READ_FD, NULL, NULL, NULL);
 		if (g_env.active_sock < 0)
-			error_quit("Failed to accept connection");//check that this works
+			error_quit("Failed to accept connection");
 		if (FD_ISSET(MASTER_SOCK, &CLIENT_READ_FD))
 			accept_new_client();
 		else
