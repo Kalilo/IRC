@@ -23,7 +23,7 @@ void	manage_clients(void)
 		sd = CLIENT_SOCK(k);
 		if (sd && FD_ISSET(sd, &CLIENT_READ_FD))
 		{
-			if (get_next_line(sd, &MESSAGE) < 1)
+			if (sock_gnl(sd, &MESSAGE) < 1)
 			{
 				ft_putendl("Client disconnected");
 				close(sd);
@@ -31,8 +31,10 @@ void	manage_clients(void)
 			}
 			else
 			{
+				// printf("MESSAGE: '%s'\n", MESSAGE);//debug
 				// manage the request
 				ft_putendl_fd("Your request was recieved", sd);//temp
+				ft_strdel(&MESSAGE);
 			}
 		}
 	}
