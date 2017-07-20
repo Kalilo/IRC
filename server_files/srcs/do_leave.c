@@ -12,7 +12,9 @@
 
 #include "../includes/server.h"
 
-char	do_leave(int client, char *channel)
+char	do_leave(int sd, char *channel)
 {
+	(void)sd;
+	(void)channel;
 	return (1);
 }

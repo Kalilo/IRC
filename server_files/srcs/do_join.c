@@ -12,7 +12,9 @@
 
 #include "../includes/server.h"
 
-char	do_join(int client, char *channel)
+char	do_join(int sd, char *channel)
 {
+	(void)sd;
+	(void)channel;
 	return (1);
 }

@@ -12,7 +12,8 @@
 
 #include "../includes/server.h"
 
-char	do_who(int client)
+char	do_who(int sd)
 {
+	(void)sd;
 	return (1);
 }

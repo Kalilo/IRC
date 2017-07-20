@@ -12,7 +12,9 @@
 
 #include "../includes/server.h"
 
-char	do_msg(int client, char *msg_details)
+char	do_msg(int sd, char *msg_details)
 {
+	(void)sd;
+	(void)msg_details;
 	return (1);
 }

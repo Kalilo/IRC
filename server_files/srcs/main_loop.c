@@ -14,7 +14,7 @@
 
 void	main_loop(void)
 {
-	while (true)
+	while (1)
 	{
 		prep_client_sockets();
 		g_env.active_sock = select(MASTER_MAX_SD + 1,

@@ -14,5 +14,7 @@
 
 char	do_connect(int client, char *details)
 {
+	(void)client;
+	(void)details;
 	return (1);
 }
