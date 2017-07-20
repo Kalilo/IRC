@@ -47,6 +47,7 @@
 # define NEW_CLIENT_SOC	g_env.clients.new_sock
 
 # define MESSAGE		g_env.msg.msg
+# define MSG_ERROR		g_env.msg.error
 
 /*
 ** ----------\
@@ -78,9 +79,7 @@ typedef struct		s_msg
 {
 	t_msg_type		type;
 	char			*msg;
-	char			*channel;
-	char			*send_nick;
-	char			*dest_nick;
+	char			*error;
 }					t_msg;
 
 typedef struct		s_main_sock
@@ -182,6 +181,11 @@ void				main_loop(void);
 ** manage_clients.c
 */
 void				manage_clients(void);
+
+/*
+** manage_request.c
+*/
+char				manage_request(int client);
 
 /*
 ** prep_client_sockets.c

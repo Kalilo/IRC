@@ -14,7 +14,17 @@
 
 char	manage_request(int client)
 {
-	// if (!ft_strncmp(MESSAGE, "/nick ", 6))
-	// 	return do_nick(client, MESSAGE + 6);
+	if (!ft_strncmp(MESSAGE, "/connect ", 9))
+		return do_nick(client, MESSAGE + 9);
+	if (!ft_strncmp(MESSAGE, "/join ", 6))
+		return do_join(client, MESSAGE + 6);
+	if (!ft_strncmp(MESSAGE, "/leave ", 7))
+		return do_leave(client, MESSAGE + 7);
+	if (!ft_strncmp(MESSAGE, "/msg ", 5))
+		return do_msg(client, MESSAGE + 5);
+	if (!ft_strncmp(MESSAGE, "/nick ", 6))
+		return do_nick(client, MESSAGE + 6);
+	if (!ft_strcmp(MESSAGE, "/who"))
+		return do_who(client);
 	return (1);
 }

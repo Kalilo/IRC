@@ -23,6 +23,7 @@ SRCS_NAME =		accept_new_client.c			\
 				main_loop.c					\
 				main.c						\
 				manage_clients.c			\
+				manage_request.c			\
 				prep_client_sockets.c		\
 
 HEADER_NAMES =	server.h					\
