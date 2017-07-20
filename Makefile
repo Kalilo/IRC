@@ -15,6 +15,7 @@ NAME = shared.so
 SRCS_NAME =		error_quit.c	\
 				ft_str_append.c	\
 				ft_swap_str.c	\
+				sock_gnl.c		\
 
 HEADER_NAMES =	shared.h		\
 

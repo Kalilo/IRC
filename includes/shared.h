@@ -103,6 +103,11 @@ char	*ft_str_append3(char **s1, char **s2);
 void	ft_swap_str(char **s1, char **s2);
 
 /*
+** sock_gnl.c
+*/
+int		sock_gnl(const int fd, char **line);
+
+/*
 ** Bonus Summary:
 ** -> comming soon!
 */
