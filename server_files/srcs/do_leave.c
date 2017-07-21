@@ -18,17 +18,17 @@ char	do_leave(int sd, char *channel)
 	t_list		*user;
 
 	chan = g_env.channels;
-	while (chan && ft_strcmp(channel, chan->name))
+	while (chan && ft_strcmp(channel, ((t_channel *)(chan->content))->name))
 		chan = chan->next;
 	if (!chan)
 	{
 		MSG_ERROR = "Channel doesn't exist, or isn't avaliable.";
 		return (0);
 	}
-	user = chan->users;
+	user = ((t_channel *)(chan->content))->users;
 	while (user && user->next)
 	{
-		if (!ft_strcmp(user->next->content.name, CLIENT(sd).name))
+		if (!ft_strcmp((((t_user *)user->next->content))->nick, CLIENT(sd).nick))
 		{
 			MSG_ERROR = "Already in channel.";
 			return (0);
