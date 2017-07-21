@@ -23,7 +23,7 @@ void	manage_clients(void)
 		sd = CLIENT_SOCK(k);
 		if (sd && FD_ISSET(sd, &CLIENT_READ_FD))
 		{
-			if (sock_gnl(sd, &MESSAGE) < 1)
+			if (sock_gnl(sd, &MESSAGE) < 1 || !ft_strcmp("/quit", MESSAGE))
 			{
 				ft_putendl("Client disconnected");
 				close(sd);
