@@ -18,6 +18,7 @@ int		sock_gnl(const int fd, char **line)
 {
 	static char	buff[SOCK_GNL_BS + 1];
 	ssize_t		k;
+	char		*tmp;
 
 	if (!line)
 		return (-1);
@@ -34,5 +35,7 @@ int		sock_gnl(const int fd, char **line)
 		return (-1);
 	if (*line == NULL)
 		return (0);
+	if ((tmp = (ft_strchr(*line, '\n'))))
+		*tmp = '\0';
 	return (1);
 }
