@@ -22,7 +22,7 @@ char	do_join(int sd, char *channel)
 		chan = chan->next;
 	if (!chan)
 	{
-		MSG_ERROR = "Channel doesn't exist, or isn't avaliable.";
+		MSG_ERROR = "Channel doesn't exist, or isn't avaliable.\n";
 		return (0);
 	}
 	user = ((t_channel *)(chan->content))->users;
@@ -30,7 +30,7 @@ char	do_join(int sd, char *channel)
 	{
 		if (!ft_strcmp(((t_user *)(user->content))->nick, CLIENT(sd).nick))
 		{
-			MSG_ERROR = "Already in channel.";
+			MSG_ERROR = "Already in channel.\n";
 			return (0);
 		}
 		user = user->next;

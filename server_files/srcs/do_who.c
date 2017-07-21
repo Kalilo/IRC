@@ -23,7 +23,7 @@ char	do_who(int sd)
 		chan = chan->next;
 	if (!chan)
 	{
-		MSG_ERROR = "Channel doesn't exist, or isn't avaliable.";
+		MSG_ERROR = "Channel doesn't exist, or isn't avaliable.\n";
 		return (0);
 	}
 	chan = ((t_channel *)(chan->content))->users;
@@ -35,6 +35,7 @@ char	do_who(int sd)
 			ft_str_append(&str, "; ");
 		chan = chan->next;
 	}
+	ft_str_append(&str, "\n");
 	send(sd, str, ft_strlen(str), MSG_DONTWAIT);
 	free(str);
 	return (1);
