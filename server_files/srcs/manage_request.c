@@ -28,6 +28,8 @@ char	manage_request(int client)
 		return do_who(client);
 	if (!ft_strncmp(MESSAGE, "/create ", 8))
 		return do_create(client, MESSAGE + 8);
+	if (!ft_strncmp(MESSAGE, "/delete ", 8))
+		return do_delete(MESSAGE + 8);
 	MSG_ERROR = "UNKNOWN COMMAND\n";
 	return (0);
 }

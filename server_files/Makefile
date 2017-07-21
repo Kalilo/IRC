@@ -15,6 +15,7 @@ NAME = server
 SRCS_NAME =		accept_new_client.c			\
 				do_connect.c				\
 				do_create.c					\
+				do_delete.c					\
 				do_join.c					\
 				do_leave.c					\
 				do_msg.c					\

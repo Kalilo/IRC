@@ -149,6 +149,11 @@ char				do_connect(int client, char *details);
 char				do_create(int sd, char *channel);
 
 /*
+** do_delete.c
+*/
+char				do_delete(char *channel);
+
+/*
 ** do_join.c
 */
 char				do_join(int client, char *channel);
