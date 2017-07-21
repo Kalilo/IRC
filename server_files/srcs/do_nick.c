@@ -27,7 +27,8 @@ char	do_nick(int sd, char *nick)
 		return (0);
 	}
 	while (++k < MAX_CLIENTS)
-		if (!ft_strcmp(CLIENT(k).nick, nick))
+		if (CLIENT_SOCK(k) > 0 && CLIENT(k).nick && 
+				!ft_strcmp(CLIENT(k).nick, nick))
 		{
 			MSG_ERROR = "Nickname already in use.";
 			return (0);
