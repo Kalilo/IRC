@@ -30,6 +30,6 @@ char	manage_request(int client)
 		return do_create(client, MESSAGE + 8);
 	if (!ft_strncmp(MESSAGE, "/delete ", 8))
 		return do_delete(MESSAGE + 8);
-	MSG_ERROR = "UNKNOWN COMMAND\n";
+	MSG_ERROR = ft_strdup(MSG_E06);
 	return (0);
 }

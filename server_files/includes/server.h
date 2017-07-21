@@ -58,6 +58,7 @@
 # define MSG_E03 "Channel doesn't exist, or isn't avaliable.\n"
 # define MSG_E04 "Can't delete a channel which has users in it.\n"
 # define MSG_E05 "Already in channel.\n"
+# define MSG_E06 "UNKNOWN COMMAND\n"
 
 /*
 ** ----------\
