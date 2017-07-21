@@ -23,7 +23,7 @@ void	sig_listener(int signo)
 	if (signo == SIGPIPE || signo == SIGURG || signo == SIGCONT ||
 			signo == SIGCHLD || signo == SIGIO)
 		return ;
-	printf("Got Signal: '%d'\n", signo);
+	printf("\rGot Signal: '%d'\n", signo);
 	close(MASTER_SOCK);
 	exit(0);
 }
