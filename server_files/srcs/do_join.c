@@ -14,7 +14,35 @@
 
 char	do_join(int sd, char *channel)
 {
-	(void)sd;
-	(void)channel;
+	t_list		*chan;
+	t_list		*user;
+
+	chan = g_env.channels;
+	while (chan && ft_strcmp(channel, ((t_channel *)(chan->content))->name))
+		chan = chan->next;
+	if (!chan)
+	{
+		MSG_ERROR = "Channel doesn't exist, or isn't avaliable.";
+		return (0);
+	}
+	user = ((t_channel *)(chan->content))->users;
+	while (user && user->next)
+	{
+		if (!ft_strcmp(((t_user *)(user->content))->nick, CLIENT(sd).nick))
+		{
+			MSG_ERROR = "Already in channel.";
+			return (0);
+		}
+		user = user->next;
+	}
+	if (user)
+	{
+		if (!(user->next = ft_lstnew(&CLIENT(sd), sizeof(t_user))))
+			error_quit("failed to allocate memory.");
+	}
+	else
+		if (!(((t_channel *)(chan->content))->users = ft_lstnew(&CLIENT(sd),
+				sizeof(t_user))))
+			error_quit("failed to allocate memory.");
 	return (1);
 }

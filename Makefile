@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = shared.so
+NAME = shared.a
 
 SRCS_NAME =		error_quit.c	\
 				ft_str_append.c	\
@@ -30,10 +30,10 @@ CFLAGS =	-Wall -Wextra -Werror -fPIC -O3
 
 ifeq ($(SYS), OSX) 
 
-CFLAGS2 = 	-shared -Wall -Wextra -Werror -O3
+CFLAGS2 = 	-Wall -Wextra -Werror -O3
 else
 
-CFLAGS2 =	-shared -Wall -Wextra -Werror -O3
+CFLAGS2 =	-Wall -Wextra -Werror
 
 endif
 
@@ -87,7 +87,9 @@ $(NAME): $(OBJS)
 	@make qme
 	@$(call colourecho, " - Making $(NAME)")
 	@make -C libft
-	@$(CC) $(CFLAGS2) -o $(NAME) $^ $(LIBRARY) $(INCLUDES) -I$(INCLUDES_PATH)
+	# @$(CC) $(CFLAGS2) -o $(NAME) $^ $(LIBRARY) $(INCLUDES) -I$(INCLUDES_PATH)
+	@ar -rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 	@make server
 	@make client
 	@clear
