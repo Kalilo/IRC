@@ -64,6 +64,7 @@ typedef struct		s_user
 	int				sock;
 	char			*nick;
 	t_sock_addr		machine;
+	char			*channel;
 }					t_user;
 
 typedef struct		s_channel
