@@ -38,3 +38,15 @@ t_list		*find_user_parent_in_chan(t_list *channel, int sd)
 		return (parent);
 	return (NULL);
 }
+
+t_list		*find_last_user_in_chan(t_list *channel)
+{
+	t_list	*user;
+
+	user = ((t_channel *)(channel->content))->users;
+	while (user && user->next)
+		user = user->next;
+	if (user == ((t_channel *)(channel->content))->users)
+		return (NULL);
+	return (user);
+}

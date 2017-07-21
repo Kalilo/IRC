@@ -38,3 +38,13 @@ t_list		*find_channel_parent(char *name)
 		return (parent);
 	return (NULL);
 }
+
+t_list		*find_last_channel(void)
+{
+	t_list		*chan;
+
+	chan = g_env.channels;
+	while (chan && chan->next)
+		chan = chan->next;
+	return ((chan == g_env.channels) ? NULL : chan);
+}

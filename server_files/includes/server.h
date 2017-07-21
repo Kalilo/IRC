@@ -156,6 +156,7 @@ void				accept_new_client(void);
 */
 t_list				*find_channel(char *name);
 t_list				*find_channel_parent(char *name);
+t_list				*find_last_channel(void);
 
 /*
 ** do_connect.c
@@ -227,6 +228,7 @@ void				prep_client_sockets(void);
 */
 t_list				*find_user_in_chan(t_list *channel, int sd);
 t_list				*find_user_parent_in_chan(t_list *channel, int sd);
+t_list				*find_last_user_in_chan(t_list *channel);
 
 /*
 **                                /----------\                                **
