@@ -12,6 +12,31 @@
 
 #include "../includes/server.h"
 
+/*
+** Signals:
+** Discarded: 13
+** Kill program: 2
+*/
+
+void	sig_listener(int signo)
+{
+	if (signo == SIGPIPE || signo == SIGURG || signo == SIGCONT ||
+			signo == SIGCHLD || signo == SIGIO)
+		return ;
+	printf("Got Signal: '%d'\n", signo);
+	close(MASTER_SOCK);
+	exit(0);
+}
+
+void	sig_setter(void)
+{
+	int		k;
+
+	k = -1;
+	while (++k < 28)
+		signal(k, sig_listener);
+}
+
 char	init(int port)
 {
 	if (port <= 0 || SHRT_MAX <= port)
@@ -19,6 +44,7 @@ char	init(int port)
 	ft_bzero(&g_env, sizeof(t_env));
 	if ((MASTER_SOCK = socket(AF_INET, SOCK_STREAM, 0)) == 0)
 		error_quit("Failed to open master socket.");
+	sig_setter();
 	if (setsockopt(MASTER_SOCK, SOL_SOCKET, SO_REUSEADDR, (char *)&MASTER_OPT,
 			sizeof(MASTER_OPT)) < 0)
 		error_quit("Failed to set master socket to allow multiple connections");
