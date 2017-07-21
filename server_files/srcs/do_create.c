@@ -23,7 +23,7 @@ char	do_create(int sd, char *channel)
 
 	if (CLIENT(sd).channel != NULL)
 	{
-		MSG_ERROR = "Users can't create a channel while in one.\n";
+		MSG_ERROR = MSG_E02;
 		return (0);
 	}
 	new_chan.name = ft_strdup(channel);

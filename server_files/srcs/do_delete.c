@@ -36,12 +36,12 @@ char	do_delete(char *channel)
 	if (!chan || !chan->next || ft_strcmp(channel,
 		((t_channel *)(chan->next->content))->name))
 	{
-		MSG_ERROR = "Channel doesn't exist, or isn't avaliable.\n";
+		MSG_ERROR = MSG_E03;
 		return (0);
 	}
 	if (((t_channel *)(chan->content))->users)
 	{
-		MSG_ERROR = "Can't delete a channel which has users in it.\n";
+		MSG_ERROR = MSG_E04;
 		return (0);
 	}
 	tmp = chan->next;

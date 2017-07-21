@@ -23,14 +23,14 @@ char	do_nick(int sd, char *nick)
 	k = -1;
 	if (ft_strlen(nick) > 9)
 	{
-		MSG_ERROR = "Nicknames have to be less than 10 characters.\n";
+		MSG_ERROR = MSG_E00;
 		return (0);
 	}
 	while (++k < MAX_CLIENTS)
 		if (CLIENT_SOCK(k) > 0 && CLIENT(k).nick && 
 				!ft_strcmp(CLIENT(k).nick, nick))
 		{
-			MSG_ERROR = "Nickname already in use.\n";
+			MSG_ERROR = MSG_E01;
 			return (0);
 		}
 	ft_strdel(&CLIENT(sd).nick);

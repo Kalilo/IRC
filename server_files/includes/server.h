@@ -50,6 +50,16 @@
 # define MSG_ERROR		g_env.msg.error
 
 /*
+** Strings
+*/
+# define MSG_E00 "Nicknames have to be less than 10 characters.\n"
+# define MSG_E01 "Nickname already in use.\n"
+# define MSG_E02 "Users can't create a channel while in one.\n"
+# define MSG_E03 "Channel doesn't exist, or isn't avaliable.\n"
+# define MSG_E04 "Can't delete a channel which has users in it.\n"
+# define MSG_E05 "Already in channel.\n"
+
+/*
 ** ----------\
 ** Structures |
 ** ----------/
