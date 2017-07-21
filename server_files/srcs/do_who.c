@@ -14,6 +14,26 @@
 
 char	do_who(int sd)
 {
-	(void)sd;
+	t_list		*chan;
+	char		*str;
+
+	chan = g_env.channels;
+	while (chan && ft_strcmp(CLIENT(sd).channel,
+			((t_channel *)(chan->content))->name))
+		chan = chan->next;
+	if (!chan)
+	{
+		MSG_ERROR = "Channel doesn't exist, or isn't avaliable.";
+		return (0);
+	}
+	chan = ((t_channel *)(chan->content))->users;
+	str = ft_strdup("Users: ");
+	while (chan)
+	{
+		ft_str_append(&str, ((t_user *)chan->content)->nick);
+		if (chan->next)
+			ft_str_append(&str, "; ");
+		chan = chan->next;
+	}
 	return (1);
 }
