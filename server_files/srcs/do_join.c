@@ -32,5 +32,7 @@ char	do_join(int sd, char *channel)
 	else
 		((t_channel *)(chan->content))->users =
 			ft_lstnew(&CLIENT(sd), sizeof(t_user));
+	ft_strdel(&CLIENT(sd).channel);
+	CLIENT(sd).channel = ft_strdup(channel);
 	return (1);
 }
