@@ -152,6 +152,12 @@ extern t_env		g_env;
 void				accept_new_client(void);
 
 /*
+** channel_lst.c
+*/
+t_list				*find_channel(char *name);
+t_list				*find_channel_parent(char *name);
+
+/*
 ** do_connect.c
 */
 char				do_connect(int client, char *details);
@@ -215,6 +221,12 @@ char				manage_request(int client);
 ** prep_client_sockets.c
 */
 void				prep_client_sockets(void);
+
+/*
+** user_lst.c
+*/
+t_list				*find_user_in_chan(t_list *channel, int sd);
+t_list				*find_user_parent_in_chan(t_list *channel, int sd);
 
 /*
 **                                /----------\                                **

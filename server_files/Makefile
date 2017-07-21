@@ -13,6 +13,7 @@
 NAME = server
 
 SRCS_NAME =		accept_new_client.c			\
+				channel_lst.c				\
 				do_connect.c				\
 				do_create.c					\
 				do_delete.c					\
@@ -27,6 +28,7 @@ SRCS_NAME =		accept_new_client.c			\
 				manage_clients.c			\
 				manage_request.c			\
 				prep_client_sockets.c		\
+				user_lst.c					\
 
 HEADER_NAMES =	server.h					\
 
