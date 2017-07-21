@@ -22,7 +22,8 @@ char	do_delete(char *channel)
 	t_list		*tmp;
 
 	chan = g_env.channels;
-	if (ft_strcmp(channel, ((t_channel *)(chan->next))->name))
+	if (chan && chan->next && !ft_strcmp(channel,
+		((t_channel *)(chan->next))->name))
 	{
 		g_env.channels = chan->next;
 		free(chan->content);
@@ -32,7 +33,8 @@ char	do_delete(char *channel)
 	while (chan && chan->next &&
 			ft_strcmp(channel, ((t_channel *)(chan->next->content))->name))
 		chan = chan->next;
-	if (!chan || !chan->next)
+	if (!chan || !chan->next || ft_strcmp(channel,
+		((t_channel *)(chan->next->content))->name))
 	{
 		MSG_ERROR = "Channel doesn't exist, or isn't avaliable.\n";
 		return (0);
