@@ -34,7 +34,7 @@ void	manage_clients(void)
 				if (manage_request(k))
 					send(sd, "SUCCESS\n", 8, MSG_DONTWAIT);
 				else
-					send(sd, MSG_ERROR, sizeof(MSG_ERROR), MSG_DONTWAIT);
+					send(sd, MSG_ERROR, ft_strlen(MSG_ERROR), MSG_DONTWAIT);
 				ft_strdel(&MESSAGE);
 			}
 		}
