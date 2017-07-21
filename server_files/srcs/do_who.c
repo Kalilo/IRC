@@ -35,5 +35,7 @@ char	do_who(int sd)
 			ft_str_append(&str, "; ");
 		chan = chan->next;
 	}
+	send(sd, str, ft_strlen(str), MSG_DONTWAIT);
+	free(str);
 	return (1);
 }
