@@ -35,5 +35,6 @@ char	do_leave(int sd, char *channel)
 		}
 		user = user->next;
 	}
+	ft_strdel(&CLIENT(sd).channel);
 	return (1);
 }

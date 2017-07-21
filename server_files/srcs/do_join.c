@@ -44,5 +44,7 @@ char	do_join(int sd, char *channel)
 		if (!(((t_channel *)(chan->content))->users = ft_lstnew(&CLIENT(sd),
 				sizeof(t_user))))
 			error_quit("failed to allocate memory.");
+	ft_strdel(&CLIENT(sd).channel);
+	CLIENT(sd).channel = ft_strdup(channel);
 	return (1);
 }
