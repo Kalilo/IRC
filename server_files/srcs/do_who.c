@@ -23,7 +23,7 @@ char	do_who(int sd)
 		chan = chan->next;
 	if (!chan)
 	{
-		MSG_ERROR = ft_strdup(MSG_E04);
+		MSG_ERROR = ft_strdup(MSG_E08);
 		return (0);
 	}
 	chan = ((t_channel *)(chan->content))->users;

@@ -59,6 +59,8 @@
 # define MSG_E04 "Can't delete a channel which has users in it.\n"
 # define MSG_E05 "Already in channel.\n"
 # define MSG_E06 "UNKNOWN COMMAND\n"
+# define MSG_E07 "Can't leave channels you aren't in.\n"
+# define MSG_E08 "Can't run command outside of a channel\n"
 
 /*
 ** ----------\
