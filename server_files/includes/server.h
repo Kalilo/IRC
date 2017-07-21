@@ -144,6 +144,11 @@ void				accept_new_client(void);
 char				do_connect(int client, char *details);
 
 /*
+** do_create.c
+*/
+char				do_create(int sd, char *channel);
+
+/*
 ** do_join.c
 */
 char				do_join(int client, char *channel);

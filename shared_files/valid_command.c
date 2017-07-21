@@ -26,5 +26,7 @@ char	valid_command(char *str)
 		return (1);
 	if (!ft_strncmp(str, "/connect ", 9))
 		return (1);
+	if (!ft_strncmp(str, "/create ", 8))
+		return (1);
 	return (0);
 }
