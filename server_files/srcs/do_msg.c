@@ -18,7 +18,7 @@ char		do_msg(int sd, char *msg_details)
 	int			k;
 	t_list		*chan;
 
-	if (!parse_message(&msg, msg_details) && clear_msg(&msg))
+	if (!parse_message(sd, &msg, msg_details) && clear_msg(&msg))
 		return (0);
 	k = -1;
 	if (msg.type == msg_direct)

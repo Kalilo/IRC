@@ -227,7 +227,8 @@ char				manage_request(int client);
 ** parse_msg.c
 */
 t_msg_type			get_msg_type(char *dest);
-char				parse_message(t_msg *msg, char *msg_details);
+char				*prep_message(int sd, t_msg msg);
+char				parse_message(int sd, t_msg *msg, char *msg_details);
 char				clear_msg(t_msg *msg);
 
 /*

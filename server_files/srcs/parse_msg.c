@@ -25,7 +25,28 @@ t_msg_type	get_msg_type(char *dest)
 	return (msg_none);
 }
 
-char		parse_message(t_msg *msg, char *msg_details)
+char		*prep_message(int sd, t_msg msg)
+{
+	char		*tmp;
+	t_list		*chan;
+
+	tmp = NULL;
+	if (msg.type == msg_direct)
+		tmp = ft_strjoin(CLIENT(sd).nick, ": ");
+	else if (msg.type == msg_channel)
+	{
+		chan = find_channel(msg.dest);
+		tmp = ft_strjoin(((t_channel *)(chan->content))->name, ": ");
+		ft_str_append(&tmp, "[");
+		ft_str_append(&tmp, CLIENT(sd).nick);
+		ft_str_append(&tmp, "] ");
+	}
+	tmp = ft_str_append3(&tmp, &msg.msg);
+	ft_str_append(&tmp, "\n");
+	return (tmp);
+}
+
+char		parse_message(int sd, t_msg *msg, char *msg_details)
 {
 	char		*tmp;
 
@@ -43,7 +64,7 @@ char		parse_message(t_msg *msg, char *msg_details)
 	msg->dest = ft_strdup(msg_details);
 	msg->dest[(tmp - msg_details)] = '\0';
 	msg->msg = ft_strdup(tmp + 1);
-	ft_str_append(&(msg->msg), "\n");
+	msg->msg = prep_message(sd, *msg);
 	if ((msg->type = get_msg_type(msg->dest)) == msg_none)
 	{
 		MSG_ERROR = ft_strdup(MSG_E12);
