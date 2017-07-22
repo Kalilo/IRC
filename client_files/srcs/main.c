@@ -40,9 +40,31 @@ void	parse_arguments(int ac, char **av)
 	connect_to_server();
 }
 
+void	sig_listener(int signo)
+{
+	if (signo == SIGURG || signo == SIGCONT ||
+			signo == SIGCHLD || signo == SIGIO)
+		return ;
+	if (signo == SIGPIPE)
+		ft_putendl("Server died.");
+	printf("\rGot Signal: '%d'\n", signo);
+	close(g_env.socket_fd);
+	exit(0);
+}
+
+void	sig_setter(void)
+{
+	int		k;
+
+	k = -1;
+	while (++k < 28)
+		signal(k, sig_listener);
+}
+
 int		main(int ac, char **av)
 {
 	ft_bzero(&g_env, sizeof(t_env));
+	sig_setter();
 	parse_arguments(ac, av);
 	client_loop();
 	close(g_env.socket_fd);
