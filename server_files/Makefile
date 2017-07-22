@@ -27,6 +27,7 @@ SRCS_NAME =		accept_new_client.c			\
 				main.c						\
 				manage_clients.c			\
 				manage_request.c			\
+				parse_msg.c					\
 				prep_client_sockets.c		\
 				user_lst.c					\
 
