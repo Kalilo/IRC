@@ -18,6 +18,7 @@ void	client_loop(void)
 
 	ft_putstr("Enter Command: ");
 	line = NULL;
+	//need to use select to monitor sockets
 	while (get_next_line(STDIN_FILENO, &line) > 0 && strcmp(line, "/quit"))
 	{
 		if (!valid_command(line))
