@@ -16,25 +16,30 @@ char	do_leave(int sd, char *channel)
 {
 	t_list		*chan;
 	t_list		*user;
+	t_list		*tmp;
 
-	chan = g_env.channels;
-	while (chan && ft_strcmp(channel, ((t_channel *)(chan->content))->name))
-		chan = chan->next;
-	if (!chan)
+	if (!(chan = find_channel(channel)))
 	{
 		MSG_ERROR = ft_strdup(MSG_E03);
 		return (0);
 	}
-	user = ((t_channel *)(chan->content))->users;
-	while (user && user->next)
+	if (!(find_user_in_chan(chan, sd)))
 	{
-		if (!ft_strcmp((((t_user *)user->next->content))->nick, CLIENT(sd).nick))
-		{
-			MSG_ERROR = ft_strdup(MSG_E04);
-			return (0);
-		}
-		user = user->next;
+		MSG_ERROR = ft_strdup(MSG_E07);
+		return (0);
+	}
+	if (!(user = find_user_parent_in_chan(chan, sd)))
+	{
+		tmp = ((t_channel *)(chan->content))->users;
+		((t_channel *)(chan->content))->users = tmp->next;
+	}
+	else
+	{
+		tmp = user->next;
+		user->next = tmp->next;
 	}
 	ft_strdel(&CLIENT(sd).channel);
+	free(tmp->content);
+	free(tmp);
 	return (1);
 }

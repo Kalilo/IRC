@@ -17,33 +17,21 @@ char	do_join(int sd, char *channel)
 	t_list		*chan;
 	t_list		*user;
 
-	chan = g_env.channels;
-	while (chan && ft_strcmp(channel, ((t_channel *)(chan->content))->name))
-		chan = chan->next;
-	if (!chan)
+	if (!(chan = find_channel(channel)))
 	{
 		MSG_ERROR = ft_strdup(MSG_E03);
 		return (0);
 	}
-	user = ((t_channel *)(chan->content))->users;
-	while (user && user->next)
+	if (find_user_in_chan(chan, sd))
 	{
-		if (!ft_strcmp(((t_user *)(user->content))->nick, CLIENT(sd).nick))
-		{
-			MSG_ERROR = ft_strdup(MSG_E05);
-			return (0);
-		}
-		user = user->next;
+		MSG_ERROR = ft_strdup(MSG_E03);
+		return (0);
 	}
-	if (user)
-	{
-		if (!(user->next = ft_lstnew(&CLIENT(sd), sizeof(t_user))))
-			error_quit("failed to allocate memory.");
-	}
+	if ((user = find_last_user_in_chan(chan)))
+		user->next = ft_lstnew(&CLIENT(sd), sizeof(t_user));
 	else
-		if (!(((t_channel *)(chan->content))->users = ft_lstnew(&CLIENT(sd),
-				sizeof(t_user))))
-			error_quit("failed to allocate memory.");
+		((t_channel *)(chan->content))->users =
+			ft_lstnew(&CLIENT(sd), sizeof(t_user));
 	ft_strdel(&CLIENT(sd).channel);
 	CLIENT(sd).channel = ft_strdup(channel);
 	return (1);

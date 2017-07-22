@@ -12,7 +12,12 @@
 
 NAME = client
 
-SRCS_NAME =		\
+SRCS_NAME =		client_loop.c				\
+				connect_to_server.c			\
+				main.c						\
+				do_connect.c				\
+				read_from_socket.c			\
+				write_to_socket.c			\
 
 HEADER_NAMES =	client.h					\
 
@@ -26,10 +31,10 @@ CFLAGS =	-Wall -Wextra -Werror -O3
 
 ifeq ($(SYS), OSX) 
 
-CFLAGS2 = 	-Wall -Wextra -Werror -O3 ../shared.so
+CFLAGS2 = 	-Wall -Wextra -Werror -O3
 else
 
-CFLAGS2 =	-Wall -Wextra -Werror -O3 ../shared.so
+CFLAGS2 =	-Wall -Wextra -Werror -O3
 
 endif
 
@@ -80,7 +85,7 @@ endef
 $(NAME): $(OBJS)
 	@$(call colourecho, " - Making $(NAME)")
 	@clear
-	@$(CC) $(CFLAGS2) -o $(NAME) $^ $(LIBRARY) $(INCLUDES) -I$(INCLUDES_PATH)
+	@$(CC) $(CFLAGS2) -o $(NAME) $^ ../shared.a $(LIBRARY) $(INCLUDES) -I$(INCLUDES_PATH)
 	@clear
 	@$(call colourecho, "Make Done!")
 

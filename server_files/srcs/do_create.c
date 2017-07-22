@@ -26,11 +26,14 @@ char	do_create(int sd, char *channel)
 		MSG_ERROR = ft_strdup(MSG_E02);
 		return (0);
 	}
+	if (find_channel(channel))
+	{
+		MSG_ERROR = ft_strdup(MSG_E09);
+		return (0);
+	}
 	new_chan.name = ft_strdup(channel);
 	new_chan.users = NULL;
-	chan = g_env.channels;
-	while (chan && chan->next)
-		chan = chan->next;
+	chan = find_last_channel();
 	if (chan)
 		chan->next = ft_lstnew(&new_chan, sizeof(t_channel));
 	else

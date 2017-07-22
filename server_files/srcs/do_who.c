@@ -12,20 +12,36 @@
 
 #include "../includes/server.h"
 
+char	show_channels(int sd)
+{
+	t_list		*chan;
+	char		*str;
+
+	if (!(chan = g_env.channels))
+		str = ft_strdup("No Channels Avaliable.");
+	else
+		str = ft_strdup("Channels: ");
+	while (chan)
+	{
+		ft_str_append(&str, ((t_channel *)chan->content)->name);
+		if (chan->next)
+			ft_str_append(&str, "; ");
+		chan = chan->next;
+	}
+	ft_str_append(&str, "\n");
+	send(sd, str, ft_strlen(str), MSG_DONTWAIT);
+	free(str);
+	return (1);
+}
+
 char	do_who(int sd)
 {
 	t_list		*chan;
 	char		*str;
 
-	chan = g_env.channels;
-	while (chan && ft_strcmp(CLIENT(sd).channel,
-			((t_channel *)(chan->content))->name))
-		chan = chan->next;
+	chan = find_channel(CLIENT(sd).channel);
 	if (!chan)
-	{
-		MSG_ERROR = ft_strdup(MSG_E08);
-		return (0);
-	}
+		return (show_channels(sd));
 	chan = ((t_channel *)(chan->content))->users;
 	str = ft_strdup("Users: ");
 	while (chan)

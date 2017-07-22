@@ -61,6 +61,10 @@
 # define MSG_E06 "UNKNOWN COMMAND\n"
 # define MSG_E07 "Can't leave channels you aren't in.\n"
 # define MSG_E08 "Can't run command outside of a channel\n"
+# define MSG_E09 "Channel already exists.\n"
+# define MSG_E10 "Message has no content.\n"
+# define MSG_E11 "Message has no details.\n"
+# define MSG_E12 "Failed to find a matching destination.\n"
 
 /*
 ** ----------\
@@ -94,6 +98,7 @@ typedef struct		s_msg
 	t_msg_type		type;
 	char			*msg;
 	char			*error;
+	char			*dest;
 }					t_msg;
 
 typedef struct		s_main_sock
@@ -217,6 +222,14 @@ void				manage_clients(void);
 ** manage_request.c
 */
 char				manage_request(int client);
+
+/*
+** parse_msg.c
+*/
+t_msg_type			get_msg_type(char *dest);
+char				*prep_message(int sd, t_msg msg);
+char				parse_message(int sd, t_msg *msg, char *msg_details);
+char				clear_msg(t_msg *msg);
 
 /*
 ** prep_client_sockets.c
