@@ -27,22 +27,28 @@ void	manage_sock(void)
 		exit_message("Server died.");
 	if (ft_strlen(line))
 	{
-		ft_putchar('\r');
+		ft_putstr("\r                               \r");
 		ft_putendl(line);
 		ft_putstr("\rEnter Command: ");
 	}
+	else
+		error_quit("Sock error");
 	ft_strdel(&line);
 }
 
 void	client_loop(void)
 {
 	char		*line;
+	int			sock;
 
 	ft_putstr("Enter Command: ");
 	line = NULL;
 	while (1)
 	{
 		main_socks();
+		if ((sock = select(g_env.socket_fd + 1, &g_env.fds, NULL, NULL,
+				NULL)) < 0)
+			exit_message("Server died.");
 		if (FD_ISSET(g_env.socket_fd, &g_env.fds))
 			manage_sock();
 		if (FD_ISSET(STDIN_FILENO, &g_env.fds))
