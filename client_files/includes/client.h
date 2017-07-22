@@ -33,6 +33,7 @@ typedef struct		s_env
 	int				port;
 	t_hostent		*server;
 	t_sock_addrin	server_addr;
+	char			*error;
 }					t_env;
 
 /*
@@ -58,8 +59,29 @@ extern t_env		g_env;
 */
 
 /*
-** file.c
+** client_loop.c
 */
+void				client_loop(void);
+
+/*
+** connect_to_server.c
+*/
+void				connect_to_server(void);
+
+/*
+** do_connect.c
+*/
+char				do_connect(char *details);
+
+/*
+** read_from_socket.c
+*/
+char				*read_from_socket(void);
+
+/*
+** write_to_socket.c
+*/
+void				write_to_socket(char *line);
 
 /*
 **                                /----------\                                **

@@ -12,7 +12,12 @@
 
 NAME = client
 
-SRCS_NAME =		\
+SRCS_NAME =		client_loop.c				\
+				connect_to_server.c			\
+				main.c						\
+				do_connect.c				\
+				read_from_socket.c			\
+				write_to_socket.c			\
 
 HEADER_NAMES =	client.h					\
 
