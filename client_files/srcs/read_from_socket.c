@@ -16,7 +16,7 @@ char	*read_from_socket(void)
 {
 	char		*line;
 
-	if (get_next_line(g_env.socket_fd, &line) < 0)
+	if (sock_gnl(g_env.socket_fd, &line) < 0)
 		error_quit("Failed to read from the socket.");
 	return (line);
 }
