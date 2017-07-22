@@ -34,6 +34,7 @@ typedef struct		s_env
 	t_hostent		*server;
 	t_sock_addrin	server_addr;
 	char			*error;
+	fd_set			fds;
 }					t_env;
 
 /*
