@@ -18,7 +18,7 @@ void	client_loop(void)
 
 	ft_putstr("Enter Command: ");
 	line = NULL;
-	while (get_next_line(STDIN_FILENO, &line) > 0 && strcmp(line, "quit"))
+	while (get_next_line(STDIN_FILENO, &line) > 0 && strcmp(line, "/quit"))
 	{
 		if (!valid_command(line))
 		{
@@ -33,7 +33,7 @@ void	client_loop(void)
 		ft_strdel(&line);
 		ft_putstr("Enter Command: ");
 	}
-	if (!strcmp(line, "quit"))
+	if (!strcmp(line, "/quit"))
 		write_to_socket(line);
 	ft_strdel(&line);
 }
