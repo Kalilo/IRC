@@ -35,11 +35,16 @@ void	parse_arguments(int ac, char **av)
 		g_env.server = gethostbyname(tmp2);
 		ft_strdel(&tmp2);
 	}
+	else
+		return ;
+	connect_to_server();
 }
 
 int		main(int ac, char **av)
 {
 	ft_bzero(&g_env, sizeof(t_env));
 	parse_arguments(ac, av);
+	client_loop();
+	close(g_env.socket_fd);
 	return (0);
 }
