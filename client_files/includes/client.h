@@ -27,6 +27,14 @@
 ** ----------/
 */
 
+typedef struct		s_env
+{
+	int				socket_fd;
+	int				port;
+	t_hostent		*server;
+	t_sock_addrin	server_addr;
+}					t_env;
+
 /*
 ** ----------\
 ** Globals    |
@@ -35,7 +43,11 @@
 
 # ifdef CLIENT_MAIN
 
+t_env				g_env;
+
 # else
+
+extern t_env		g_env;
 
 # endif
 
