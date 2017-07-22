@@ -31,8 +31,6 @@ void	manage_sock(void)
 		ft_putendl(line);
 		ft_putstr("\rEnter Command: ");
 	}
-	else
-		error_quit("Sock error");
 	ft_strdel(&line);
 }
 
