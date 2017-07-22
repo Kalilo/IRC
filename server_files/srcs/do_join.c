@@ -22,9 +22,10 @@ char	do_join(int sd, char *channel)
 		MSG_ERROR = ft_strdup(MSG_E03);
 		return (0);
 	}
-	if (find_user_in_chan(chan, sd))
+	if ((CLIENT(sd).channel && !ft_strcmp(CLIENT(sd).channel, channel))
+		|| find_user_in_chan(chan, sd))
 	{
-		MSG_ERROR = ft_strdup(MSG_E03);
+		MSG_ERROR = ft_strdup(MSG_E05);
 		return (0);
 	}
 	if ((user = find_last_user_in_chan(chan)))
