@@ -26,4 +26,5 @@ void	connect_to_server(void)
 	if (connect(g_env.socket_fd, (t_sock_addr *)&g_env.server_addr,
 			sizeof(g_env.server_addr)) < 0)
 		error_quit("Failed to connect to the server.");
+	ft_putendl("Connected!");
 }
