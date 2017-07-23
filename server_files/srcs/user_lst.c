@@ -50,3 +50,15 @@ t_list		*find_last_user_in_chan(t_list *channel)
 		return (NULL);
 	return (user);
 }
+
+int			find_user_by_name(char *name)
+{
+	int		k;
+
+	k = -1;
+	while (++k < MAX_CLIENTS)
+		if (CLIENT_SOCK(k) && CLIENT(k).nick &&
+				!ft_strcmp(CLIENT(k).nick, name))
+			return (k);
+	return (-1);
+}

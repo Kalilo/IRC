@@ -227,7 +227,7 @@ char				manage_request(int client);
 ** parse_msg.c
 */
 t_msg_type			get_msg_type(char *dest);
-char				*prep_message(int sd, t_msg msg);
+char				*prep_message(int pos, t_msg *msg);
 char				parse_message(int sd, t_msg *msg, char *msg_details);
 char				clear_msg(t_msg *msg);
 
@@ -242,6 +242,7 @@ void				prep_client_sockets(void);
 t_list				*find_user_in_chan(t_list *channel, int sd);
 t_list				*find_user_parent_in_chan(t_list *channel, int sd);
 t_list				*find_last_user_in_chan(t_list *channel);
+int					find_user_by_name(char *name);
 
 /*
 **                                /----------\                                **
