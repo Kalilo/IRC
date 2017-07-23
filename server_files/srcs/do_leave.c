@@ -12,7 +12,7 @@
 
 #include "../includes/server.h"
 
-char	do_leave(int sd, char *channel)
+char	do_leave(int pos, char *channel)
 {
 	t_list		*chan;
 	t_list		*user;
@@ -23,12 +23,14 @@ char	do_leave(int sd, char *channel)
 		MSG_ERROR = ft_strdup(MSG_E03);
 		return (0);
 	}
-	if (!(find_user_in_chan(chan, sd)))
+	if (CLIENT(pos).channel && !ft_strcmp(CLIENT(pos).channel, channel))
+		ft_strdel(&CLIENT(pos).channel);
+	if (!(find_user_in_chan(chan, pos)))
 	{
 		MSG_ERROR = ft_strdup(MSG_E07);
 		return (0);
 	}
-	if (!(user = find_user_parent_in_chan(chan, sd)))
+	if (!(user = find_user_parent_in_chan(chan, pos)))
 	{
 		tmp = ((t_channel *)(chan->content))->users;
 		((t_channel *)(chan->content))->users = tmp->next;
@@ -38,7 +40,6 @@ char	do_leave(int sd, char *channel)
 		tmp = user->next;
 		user->next = tmp->next;
 	}
-	ft_strdel(&CLIENT(sd).channel);
 	free(tmp->content);
 	free(tmp);
 	return (1);
