@@ -38,7 +38,10 @@ char		*prep_message(int pos, t_msg *msg)
 		chan = find_channel(msg->dest);
 		tmp = ft_strjoin(((t_channel *)(chan->content))->name, ": ");
 		ft_str_append(&tmp, "[");
-		ft_str_append(&tmp, CLIENT(pos).nick);
+		if (CLIENT(pos).nick)
+			ft_str_append(&tmp, CLIENT(pos).nick);
+		else
+			ft_str_append(&tmp, "(anonymous)");
 		ft_str_append(&tmp, "] ");
 	}
 	else
