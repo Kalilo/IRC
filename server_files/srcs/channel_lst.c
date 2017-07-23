@@ -16,6 +16,8 @@ t_list		*find_channel(char *name)
 {
 	t_list		*chan;
 
+	if (!name)
+		return (NULL);
 	chan = g_env.channels;
 	while (chan && ft_strcmp(name, ((t_channel *)(chan->content))->name))
 		chan = chan->next;
@@ -27,6 +29,8 @@ t_list		*find_channel_parent(char *name)
 	t_list		*chan;
 	t_list		*parent;
 
+	if (!name)
+		return (NULL);
 	parent = NULL;
 	chan = g_env.channels;
 	while (chan && ft_strcmp(name, ((t_channel *)(chan->content))->name))
