@@ -12,29 +12,29 @@
 
 #include "../includes/server.h"
 
-t_list		*find_user_in_chan(t_list *channel, int sd)
+t_list		*find_user_in_chan(t_list *channel, int pos)
 {
 	t_list	*user;
 
 	user = ((t_channel *)(channel->content))->users;
-	while (user && ((t_user *)(user->content))->sock != sd)
+	while (user && ((t_user *)(user->content))->sock != CLIENT_SOCK(pos))
 		user = user->next;
 	return (user);
 }
 
-t_list		*find_user_parent_in_chan(t_list *channel, int sd)
+t_list		*find_user_parent_in_chan(t_list *channel, int pos)
 {
 	t_list	*user;
 	t_list	*parent;
 
 	parent = NULL;
 	user = ((t_channel *)(channel->content))->users;
-	while (user && ((t_user *)(user->content))->sock != sd)
+	while (user && ((t_user *)(user->content))->sock != CLIENT_SOCK(pos))
 	{
 		parent = user;
 		user = user->next;
 	}
-	if (((t_user *)(user->content))->sock == sd)
+	if (((t_user *)(user->content))->sock == CLIENT_SOCK(pos))
 		return (parent);
 	return (NULL);
 }

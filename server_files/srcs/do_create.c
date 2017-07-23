@@ -16,12 +16,12 @@
 ** Used for creating channels
 */
 
-char	do_create(int sd, char *channel)
+char	do_create(int pos, char *channel)
 {
 	t_list		*chan;
 	t_channel	new_chan;
 
-	if (CLIENT(sd).channel != NULL)
+	if (CLIENT(pos).channel != NULL)
 	{
 		MSG_ERROR = ft_strdup(MSG_E02);
 		return (0);
@@ -38,5 +38,5 @@ char	do_create(int sd, char *channel)
 		chan->next = ft_lstnew(&new_chan, sizeof(t_channel));
 	else
 		g_env.channels = ft_lstnew(&new_chan, sizeof(t_channel));
-	return (do_join(sd, channel));
+	return (do_join(pos, channel));
 }

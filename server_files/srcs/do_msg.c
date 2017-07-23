@@ -12,13 +12,13 @@
 
 #include "../includes/server.h"
 
-char		do_msg(int sd, char *msg_details)
+char		do_msg(int pos, char *msg_details)
 {
 	t_msg		msg;
 	int			k;
 	t_list		*chan;
 
-	if (!parse_message(sd, &msg, msg_details) && clear_msg(&msg))
+	if (!parse_message(pos, &msg, msg_details) && clear_msg(&msg))
 		return (0);
 	k = -1;
 	if (msg.type == msg_direct)

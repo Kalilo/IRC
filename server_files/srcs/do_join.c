@@ -12,7 +12,7 @@
 
 #include "../includes/server.h"
 
-char	do_join(int sd, char *channel)
+char	do_join(int pos, char *channel)
 {
 	t_list		*chan;
 	t_list		*user;
@@ -22,18 +22,18 @@ char	do_join(int sd, char *channel)
 		MSG_ERROR = ft_strdup(MSG_E03);
 		return (0);
 	}
-	if ((CLIENT(sd).channel && !ft_strcmp(CLIENT(sd).channel, channel))
-		|| find_user_in_chan(chan, sd))
+	if ((CLIENT(pos).channel && !ft_strcmp(CLIENT(pos).channel, channel))
+		|| find_user_in_chan(chan, pos))
 	{
 		MSG_ERROR = ft_strdup(MSG_E05);
 		return (0);
 	}
 	if ((user = find_last_user_in_chan(chan)))
-		user->next = ft_lstnew(&CLIENT(sd), sizeof(t_user));
+		user->next = ft_lstnew(&CLIENT(pos), sizeof(t_user));
 	else
 		((t_channel *)(chan->content))->users =
-			ft_lstnew(&CLIENT(sd), sizeof(t_user));
-	ft_strdel(&CLIENT(sd).channel);
-	CLIENT(sd).channel = ft_strdup(channel);
+			ft_lstnew(&CLIENT(pos), sizeof(t_user));
+	ft_strdel(&CLIENT(pos).channel);
+	CLIENT(pos).channel = ft_strdup(channel);
 	return (1);
 }

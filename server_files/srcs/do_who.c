@@ -12,7 +12,7 @@
 
 #include "../includes/server.h"
 
-char	show_channels(int sd)
+char	show_channels(int pos)
 {
 	t_list		*chan;
 	char		*str;
@@ -29,19 +29,19 @@ char	show_channels(int sd)
 		chan = chan->next;
 	}
 	ft_str_append(&str, "\n");
-	send(sd, str, ft_strlen(str), MSG_DONTWAIT);
+	send(CLIENT_SOCK(pos), str, ft_strlen(str), MSG_DONTWAIT);
 	free(str);
 	return (1);
 }
 
-char	do_who(int sd)
+char	do_who(int pos)
 {
 	t_list		*chan;
 	char		*str;
 
-	chan = find_channel(CLIENT(sd).channel);
+	chan = find_channel(CLIENT(pos).channel);
 	if (!chan)
-		return (show_channels(sd));
+		return (show_channels(pos));
 	chan = ((t_channel *)(chan->content))->users;
 	str = ft_strdup("Users: ");
 	while (chan)
@@ -52,7 +52,7 @@ char	do_who(int sd)
 		chan = chan->next;
 	}
 	ft_str_append(&str, "\n");
-	send(sd, str, ft_strlen(str), MSG_DONTWAIT);
+	send(CLIENT_SOCK(pos), str, ft_strlen(str), MSG_DONTWAIT);
 	free(str);
 	return (1);
 }

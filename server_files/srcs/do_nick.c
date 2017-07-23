@@ -16,7 +16,7 @@
 ** Very basic, need to be upgraded
 */
 
-char	do_nick(int sd, char *nick)
+char	do_nick(int pos, char *nick)
 {
 	int		k;
 
@@ -33,7 +33,7 @@ char	do_nick(int sd, char *nick)
 			MSG_ERROR = ft_strdup(MSG_E01);
 			return (0);
 		}
-	ft_strdel(&CLIENT(sd).nick);
-	CLIENT(sd).nick = ft_strdup(nick);
+	ft_strdel(&CLIENT(pos).nick);
+	CLIENT(pos).nick = ft_strdup(nick);
 	return (1);
 }
