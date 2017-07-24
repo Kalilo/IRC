@@ -22,17 +22,11 @@ char	do_nick(int pos, char *nick)
 
 	k = -1;
 	if (ft_strlen(nick) > 9)
-	{
-		MSG_ERROR = ft_strdup(MSG_E00);
-		return (0);
-	}
+		RET_ERR(MSG_E00);
 	while (++k < MAX_CLIENTS)
-		if (CLIENT_SOCK(k) > 0 && CLIENT(k).nick && 
+		if (CLIENT_SOCK(k) > 0 && CLIENT(k).nick &&
 				!ft_strcmp(CLIENT(k).nick, nick))
-		{
-			MSG_ERROR = ft_strdup(MSG_E01);
-			return (0);
-		}
+			RET_ERR(MSG_E01);
 	ft_strdel(&CLIENT(pos).nick);
 	CLIENT(pos).nick = ft_strdup(nick);
 	return (1);

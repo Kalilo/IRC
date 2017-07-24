@@ -18,16 +18,10 @@ char	do_join(int pos, char *channel)
 	t_list		*user;
 
 	if (!(chan = find_channel(channel)))
-	{
-		MSG_ERROR = ft_strdup(MSG_E03);
-		return (0);
-	}
+		RET_ERR(MSG_E03);
 	if ((CLIENT(pos).channel && !ft_strcmp(CLIENT(pos).channel, channel))
-		|| find_user_in_chan(chan, pos))
-	{
-		MSG_ERROR = ft_strdup(MSG_E05);
-		return (0);
-	}
+			|| find_user_in_chan(chan, pos))
+		RET_ERR(MSG_E05);
 	if ((user = find_last_user_in_chan(chan)))
 		user->next = ft_lstnew(&CLIENT(pos), sizeof(t_user));
 	else

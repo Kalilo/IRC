@@ -22,15 +22,9 @@ char	do_create(int pos, char *channel)
 	t_channel	new_chan;
 
 	if (CLIENT(pos).channel != NULL)
-	{
-		MSG_ERROR = ft_strdup(MSG_E02);
-		return (0);
-	}
+		RET_ERR(MSG_E02);
 	if (find_channel(channel))
-	{
-		MSG_ERROR = ft_strdup(MSG_E09);
-		return (0);
-	}
+		RET_ERR(MSG_E09);
 	new_chan.name = ft_strdup(channel);
 	new_chan.users = NULL;
 	chan = find_last_channel();

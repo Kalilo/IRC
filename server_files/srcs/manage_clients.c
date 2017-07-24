@@ -12,6 +12,18 @@
 
 #include "../includes/server.h"
 
+void	manage_client(int k, int sd)
+{
+	if (manage_request(k))
+		send(sd, "SUCCESS\n", 8, MSG_DONTWAIT);
+	else
+	{
+		send(sd, MSG_ERROR, ft_strlen(MSG_ERROR), MSG_DONTWAIT);
+		ft_strdel(&MSG_ERROR);
+	}
+	ft_strdel(&MESSAGE);
+}
+
 void	manage_clients(void)
 {
 	int		k;
@@ -30,16 +42,7 @@ void	manage_clients(void)
 				CLIENT_SOCK(k) = 0;
 			}
 			else
-			{
-				if (manage_request(k))
-					send(sd, "SUCCESS\n", 8, MSG_DONTWAIT);
-				else
-				{
-					send(sd, MSG_ERROR, ft_strlen(MSG_ERROR), MSG_DONTWAIT);
-					ft_strdel(&MSG_ERROR);
-				}
-				ft_strdel(&MESSAGE);
-			}
+				manage_client(k, sd);
 		}
 	}
 }

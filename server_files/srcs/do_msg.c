@@ -12,11 +12,24 @@
 
 #include "../includes/server.h"
 
+void		send_msg_to_chan(t_msg msg)
+{
+	t_list		*chan;
+
+	chan = find_channel(msg.dest);
+	chan = ((t_channel *)(chan->content))->users;
+	while (chan)
+	{
+		send((((t_user *)(chan->content))->sock), msg.msg,
+			ft_strlen(msg.msg), MSG_DONTWAIT);
+		chan = chan->next;
+	}
+}
+
 char		do_msg(int pos, char *msg_details)
 {
 	t_msg		msg;
 	int			k;
-	t_list		*chan;
 
 	if (!parse_message(pos, &msg, msg_details) && clear_msg(&msg))
 		return (0);
@@ -32,16 +45,7 @@ char		do_msg(int pos, char *msg_details)
 			}
 	}
 	else
-	{
-		chan = find_channel(msg.dest);
-		chan = ((t_channel *)(chan->content))->users;
-		while (chan)
-		{
-			send((((t_user *)(chan->content))->sock), msg.msg,
-				ft_strlen(msg.msg), MSG_DONTWAIT);
-			chan = chan->next;
-		}
-	}
+		send_msg_to_chan(msg);
 	clear_msg(&msg);
 	return (1);
 }

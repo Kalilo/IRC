@@ -19,17 +19,11 @@ char	do_leave(int pos, char *channel)
 	t_list		*tmp;
 
 	if (!(chan = find_channel(channel)))
-	{
-		MSG_ERROR = ft_strdup(MSG_E03);
-		return (0);
-	}
+		RET_ERR(MSG_E03);
 	if (CLIENT(pos).channel && !ft_strcmp(CLIENT(pos).channel, channel))
 		ft_strdel(&CLIENT(pos).channel);
 	if (!(find_user_in_chan(chan, pos)))
-	{
-		MSG_ERROR = ft_strdup(MSG_E07);
-		return (0);
-	}
+		RET_ERR(MSG_E07);
 	if (!(user = find_user_parent_in_chan(chan, pos)))
 	{
 		tmp = ((t_channel *)(chan->content))->users;
