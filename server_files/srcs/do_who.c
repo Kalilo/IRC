@@ -46,7 +46,10 @@ char	do_who(int pos)
 	str = ft_strdup("Users: ");
 	while (chan)
 	{
-		ft_str_append(&str, ((t_user *)chan->content)->nick);
+		if (((t_user *)chan->content)->nick)
+			ft_str_append(&str, ((t_user *)chan->content)->nick);
+		else
+			ft_str_append(&str, "(anonymous)");
 		if (chan->next)
 			ft_str_append(&str, "; ");
 		chan = chan->next;
