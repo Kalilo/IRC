@@ -12,8 +12,6 @@
 
 #include "../includes/shared.h"
 
-# define SOCK_GNL_BS	2
-
 int		sock_gnl(const int fd, char **line)
 {
 	static char	buff[SOCK_GNL_BS + 1];

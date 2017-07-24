@@ -49,6 +49,8 @@
 # define MESSAGE		g_env.msg.msg
 # define MSG_ERROR		g_env.msg.error
 
+# define RET_ERR(X)		{MSG_ERROR=ft_strdup(X);return(0);}
+
 /*
 ** Strings
 */

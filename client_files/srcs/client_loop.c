@@ -12,13 +12,6 @@
 
 #include "../includes/client.h"
 
-void	main_socks(void)
-{
-	FD_ZERO(&g_env.fds);
-	FD_SET(g_env.socket_fd, &g_env.fds);
-	FD_SET(STDIN_FILENO, &g_env.fds);
-}
-
 void	manage_sock(void)
 {
 	char		*line;
@@ -34,6 +27,26 @@ void	manage_sock(void)
 	ft_strdel(&line);
 }
 
+int		main_socks(int sock)
+{
+	FD_ZERO(&g_env.fds);
+	FD_SET(g_env.socket_fd, &g_env.fds);
+	FD_SET(STDIN_FILENO, &g_env.fds);
+	if ((sock = select(g_env.socket_fd + 1, &g_env.fds, NULL, NULL,
+			NULL)) < 0)
+		exit_message("Server died.");
+	if (FD_ISSET(g_env.socket_fd, &g_env.fds))
+		manage_sock();
+	return (sock);
+}
+
+void	set_shell(char **line)
+{
+	write_to_socket(*line);
+	ft_strdel(line);
+	ft_putstr("\rEnter Command: ");
+}
+
 void	client_loop(void)
 {
 	char		*line;
@@ -41,14 +54,10 @@ void	client_loop(void)
 
 	ft_putstr("Enter Command: ");
 	line = NULL;
+	sock = 0;
 	while (1)
 	{
-		main_socks();
-		if ((sock = select(g_env.socket_fd + 1, &g_env.fds, NULL, NULL,
-				NULL)) < 0)
-			exit_message("Server died.");
-		if (FD_ISSET(g_env.socket_fd, &g_env.fds))
-			manage_sock();
+		sock = main_socks(sock);
 		if (FD_ISSET(STDIN_FILENO, &g_env.fds))
 		{
 			get_next_line(STDIN_FILENO, &line);
@@ -60,12 +69,9 @@ void	client_loop(void)
 				ft_putstr("Invalid Command!\n\rEnter Command: ");
 				continue ;
 			}
-			write_to_socket(line);
-			ft_strdel(&line);
-			ft_putstr("\rEnter Command: ");
+			set_shell(&line);
 		}
 	}
-	if (!strcmp(line, "/quit"))
-		write_to_socket(line);
+	write_to_socket("/quit");
 	ft_strdel(&line);
 }
