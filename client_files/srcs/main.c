@@ -61,11 +61,40 @@ void	sig_setter(void)
 		signal(k, sig_listener);
 }
 
+void	connect_loop(void)
+{
+	char	*line;
+	char	*tmp1;
+	char	*tmp2;
+
+	line = NULL;
+	ft_putendl("Not Connected, please connect to a server.");
+	ft_putstr("Enter Command: ");
+	while (get_next_line(STDIN_FILENO, &line) > 0)
+	{
+		if (!ft_strncmp(line, "/connect ", 9) && (tmp2 = ft_strchr(line, ' '))
+			!= (tmp1 = ft_strrchr(line, ' ')))
+		{
+			g_env.port = ft_atoi(tmp1 + 1);
+			*tmp1 = '\0';
+			g_env.server = gethostbyname(tmp2 + 1);
+			connect_to_server();
+			break ;
+		}
+		ft_putendl("Not Connected, please connect to a server.");
+		ft_putstr("Enter Command: ");
+		ft_strdel(&line);
+	}
+	ft_strdel(&line);
+}
+
 int		main(int ac, char **av)
 {
 	ft_bzero(&g_env, sizeof(t_env));
 	sig_setter();
 	parse_arguments(ac, av);
+	if (ac < 2)
+		connect_loop();
 	client_loop();
 	close(g_env.socket_fd);
 	return (0);
