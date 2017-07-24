@@ -46,8 +46,6 @@ t_list		*find_last_user_in_chan(t_list *channel)
 	user = ((t_channel *)(channel->content))->users;
 	while (user && user->next)
 		user = user->next;
-	if (user == ((t_channel *)(channel->content))->users)
-		return (NULL);
 	return (user);
 }
 
