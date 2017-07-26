@@ -27,6 +27,5 @@ size_t	write_msg_to_sock(int fd, char *msg)
 			return (0);
 		pos += rlen;
 	}
-
 	return (len);
 }

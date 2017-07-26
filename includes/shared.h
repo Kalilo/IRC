@@ -66,7 +66,7 @@
 
 # define SOCK_GNL_BS	2
 
-#define WRITE_BUFF 		2
+# define WRITE_BUFF 	2
 
 # define FREE_LST(x)	free(x->content);free(x);
 
