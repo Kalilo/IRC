@@ -67,6 +67,7 @@
 # define MSG_E10 "Message has no content.\n"
 # define MSG_E11 "Message has no details.\n"
 # define MSG_E12 "Failed to find a matching destination.\n"
+# define MSG_E13 "Intended client is no longer connected.\n"
 
 /*
 ** ----------\
