@@ -16,7 +16,7 @@ void	manage_sock(void)
 {
 	char		*line;
 
-	if (sock_gnl(g_env.socket_fd, &line) < 1)
+	if (get_next_line(g_env.socket_fd, &line) < 1)
 		exit_message("Server died.");
 	if (ft_strlen(line))
 	{
