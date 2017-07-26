@@ -29,9 +29,9 @@ char	show_channels(int pos)
 		chan = chan->next;
 	}
 	ft_str_append(&str, "\n");
-	send(CLIENT_SOCK(pos), str, ft_strlen(str), MSG_DONTWAIT);
+	write_msg_to_sock(CLIENT_SOCK(pos), str);
 	free(str);
-	return (1);
+	return (2);
 }
 
 char	do_who(int pos)
@@ -55,7 +55,7 @@ char	do_who(int pos)
 		chan = chan->next;
 	}
 	ft_str_append(&str, "\n");
-	send(CLIENT_SOCK(pos), str, ft_strlen(str), MSG_DONTWAIT);
+	write_msg_to_sock(CLIENT_SOCK(pos), str);
 	free(str);
-	return (1);
+	return (2);
 }

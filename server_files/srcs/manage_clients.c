@@ -14,11 +14,13 @@
 
 void	manage_client(int k, int sd)
 {
-	if (manage_request(k))
-		send(sd, "SUCCESS\n", 8, MSG_DONTWAIT);
-	else
+	char	ret;
+
+	if ((ret = manage_request(k)) == 1)
+		write_msg_to_sock(sd, "SUCCESS\n");
+	else if (ret < 1)
 	{
-		send(sd, MSG_ERROR, ft_strlen(MSG_ERROR), MSG_DONTWAIT);
+		write_msg_to_sock(sd, MSG_ERROR);
 		ft_strdel(&MSG_ERROR);
 	}
 	ft_strdel(&MESSAGE);

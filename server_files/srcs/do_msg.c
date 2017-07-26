@@ -20,8 +20,7 @@ void		send_msg_to_chan(t_msg msg)
 	chan = ((t_channel *)(chan->content))->users;
 	while (chan)
 	{
-		send((((t_user *)(chan->content))->sock), msg.msg,
-			ft_strlen(msg.msg), MSG_DONTWAIT);
+		write_msg_to_sock((((t_user *)(chan->content))->sock), msg.msg);
 		chan = chan->next;
 	}
 }
@@ -39,8 +38,7 @@ char		do_msg(int pos, char *msg_details)
 		while (++k < MAX_CLIENTS)
 			if (CLIENT_SOCK(k) && !ft_strcmp(CLIENT(k).nick, msg.dest))
 			{
-				send(CLIENT_SOCK(k), msg.msg, ft_strlen(msg.msg),
-					MSG_DONTWAIT);
+				write_msg_to_sock(CLIENT_SOCK(k), msg.msg);
 				break ;
 			}
 	}

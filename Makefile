@@ -12,13 +12,14 @@
 
 NAME = shared.a
 
-SRCS_NAME =		error_quit.c	\
-				ft_str_append.c	\
-				ft_swap_str.c	\
-				sock_gnl.c		\
-				valid_command.c	\
+SRCS_NAME =		error_quit.c			\
+				ft_str_append.c			\
+				ft_swap_str.c			\
+				sock_gnl.c				\
+				valid_command.c			\
+				write_msg_to_sock.c		\
 
-HEADER_NAMES =	shared.h		\
+HEADER_NAMES =	shared.h				\
 
 ifeq ($(shell uname -s), Darwin) # Changes rules for MAC and Linux
 SYS = OSX

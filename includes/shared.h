@@ -66,6 +66,8 @@
 
 # define SOCK_GNL_BS	2
 
+#define WRITE_BUFF 		2
+
 # define FREE_LST(x)	free(x->content);free(x);
 
 /*
@@ -132,6 +134,11 @@ int		sock_gnl(const int fd, char **line);
 ** valid_command.c
 */
 char	valid_command(char *str);
+
+/*
+** write_msg_to_sock.c
+*/
+size_t	write_msg_to_sock(int fd, char *msg);
 
 /*
 ** Bonus Summary:
