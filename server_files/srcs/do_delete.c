@@ -16,25 +16,29 @@
 ** Used for deleting channels
 */
 
-char	do_delete(char *channel)
+char	do_delete(int pos, char *channel)
 {
 	t_list		*chan;
 	t_list		*tmp;
 
+	if (CLIENT(pos).channel != NULL)
+		RET_ERR(MSG_E14);
+	if (!find_channel(channel))
+		RET_ERR(MSG_E15);
 	if ((chan = find_channel_parent(channel)))
 	{
 		if (((t_channel *)(chan->content))->users)
 			RET_ERR(MSG_E04);
 		tmp = chan;
 		chan->next = chan->next->next;
-		FREE_LST(tmp);
 	}
 	else if (g_env.channels &&
-		!ft_strcmp(((t_channel *)(g_env.channels))->name, channel))
+		ft_strcmp(((t_channel *)(g_env.channels))->name, channel))
 	{
+		if (((t_channel *)(g_env.channels))->users)
+			RET_ERR(MSG_E04);
 		tmp = g_env.channels;
 		g_env.channels = tmp->next;
-		FREE_LST(tmp);
 	}
 	else
 		RET_ERR(MSG_E03);

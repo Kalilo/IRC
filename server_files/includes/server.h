@@ -68,6 +68,8 @@
 # define MSG_E11 "Message has no details.\n"
 # define MSG_E12 "Failed to find a matching destination.\n"
 # define MSG_E13 "Intended client is no longer connected.\n"
+# define MSG_E14 "Users can't delete a channel while in one.\n"
+# define MSG_E15 "Channel does not exists.\n"
 
 /*
 ** ----------\
@@ -179,7 +181,7 @@ char				do_create(int sd, char *channel);
 /*
 ** do_delete.c
 */
-char				do_delete(char *channel);
+char				do_delete(int pos, char *channel);
 
 /*
 ** do_join.c

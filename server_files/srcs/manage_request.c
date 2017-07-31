@@ -29,7 +29,7 @@ char	manage_request(int client)
 	if (!ft_strncmp(MESSAGE, "/create ", 8))
 		return (do_create(client, MESSAGE + 8));
 	if (!ft_strncmp(MESSAGE, "/delete ", 8))
-		return (do_delete(MESSAGE + 8));
+		return (do_delete(client, MESSAGE + 8));
 	MSG_ERROR = ft_strdup(MSG_E06);
 	return (0);
 }
