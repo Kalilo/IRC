@@ -27,6 +27,8 @@ char	do_nick(int pos, char *nick)
 		if (CLIENT_SOCK(k) > 0 && CLIENT(k).nick &&
 				!ft_strcmp(CLIENT(k).nick, nick))
 			RET_ERR(MSG_E01);
+	if (find_channel(nick))
+		RET_ERR(MSG_E01);
 	ft_strdel(&CLIENT(pos).nick);
 	CLIENT(pos).nick = ft_strdup(nick);
 	return (1);

@@ -55,7 +55,7 @@ int			find_user_by_name(char *name)
 
 	k = -1;
 	while (++k < MAX_CLIENTS)
-		if (CLIENT_SOCK(k) && CLIENT(k).nick &&
+		if (CLIENT_SOCK(k) > 0 && CLIENT(k).nick &&
 				!ft_strcmp(CLIENT(k).nick, name))
 			return (k);
 	return (-1);
