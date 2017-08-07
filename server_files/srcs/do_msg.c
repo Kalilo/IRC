@@ -36,7 +36,8 @@ char		do_msg(int pos, char *msg_details)
 	if (msg.type == msg_direct)
 	{
 		while (++k < MAX_CLIENTS)
-			if (CLIENT_SOCK(k) && !ft_strcmp(CLIENT(k).nick, msg.dest))
+			if (CLIENT_SOCK(k) && CLIENT(k).nick &&
+				!ft_strcmp(CLIENT(k).nick, msg.dest))
 			{
 				write_msg_to_sock(CLIENT_SOCK(k), msg.msg);
 				break ;
