@@ -18,7 +18,8 @@ t_msg_type	get_msg_type(char *dest)
 
 	k = -1;
 	while (++k < MAX_CLIENTS)
-		if (CLIENT_SOCK(k) && !ft_strcmp(CLIENT(k).nick, dest))
+		if (CLIENT_SOCK(k) && CLIENT(k).nick &&
+				!ft_strcmp(CLIENT(k).nick, dest))
 			return (msg_direct);
 	if (find_channel(dest))
 		return (msg_channel);
