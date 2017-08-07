@@ -58,23 +58,17 @@ char		parse_message(int pos, t_msg *msg, char *msg_details)
 
 	ft_bzero(msg, sizeof(t_msg));
 	if (!ft_strlen(msg_details))
-	{
-		MSG_ERROR = ft_strdup(MSG_E11);
-		return (0);
-	}
+		RET_ERR(MSG_E11);
 	if (!(tmp = ft_strchr(msg_details, ' ')))
-	{
-		MSG_ERROR = ft_strdup(MSG_E10);
-		return (0);
-	}
+		RET_ERR(MSG_E10);
 	msg->dest = ft_strdup(msg_details);
 	msg->dest[(tmp - msg_details)] = '\0';
 	msg->msg = ft_strdup(tmp + 1);
-	if ((msg->type = get_msg_type(msg->dest)) == msg_none)
-	{
-		MSG_ERROR = ft_strdup(MSG_E12);
-		return (0);
-	}
+	if (!ft_strlen(msg->dest) || (msg->type = get_msg_type(msg->dest))
+			== msg_none)
+		RET_ERR(MSG_E12);
+	if (!ft_strlen(msg->msg))
+		RET_ERR(MSG_E10);
 	msg->msg = prep_message(pos, msg);
 	return (1);
 }

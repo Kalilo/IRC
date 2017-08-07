@@ -70,6 +70,7 @@
 # define MSG_E13 "Intended client is no longer connected.\n"
 # define MSG_E14 "Users can't delete a channel while in one.\n"
 # define MSG_E15 "Channel does not exists.\n"
+# define MSG_E16 "Can't message channels which you aren't in.\n"
 
 /*
 ** ----------\
@@ -196,6 +197,7 @@ char				do_leave(int client, char *channel);
 /*
 ** do_msg.c
 */
+char				send_msg_to_chan(int pos, t_msg msg);
 char				do_msg(int client, char *msg_details);
 
 /*

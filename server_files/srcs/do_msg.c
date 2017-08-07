@@ -12,10 +12,12 @@
 
 #include "../includes/server.h"
 
-void		send_msg_to_chan(t_msg msg)
+char		send_msg_to_chan(int pos, t_msg msg)
 {
 	t_list		*chan;
 
+	if (!CLIENT(pos).channel || ft_strcmp(CLIENT(pos).channel, msg.dest))
+		RET_ERR(MSG_E16);
 	chan = find_channel(msg.dest);
 	chan = ((t_channel *)(chan->content))->users;
 	while (chan)
@@ -23,6 +25,7 @@ void		send_msg_to_chan(t_msg msg)
 		write_msg_to_sock((((t_user *)(chan->content))->sock), msg.msg);
 		chan = chan->next;
 	}
+	return (1);
 }
 
 char		do_msg(int pos, char *msg_details)
@@ -44,7 +47,7 @@ char		do_msg(int pos, char *msg_details)
 			}
 	}
 	else
-		send_msg_to_chan(msg);
+		return (send_msg_to_chan(pos, msg));
 	clear_msg(&msg);
 	return (1);
 }
