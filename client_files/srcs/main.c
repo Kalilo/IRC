@@ -48,7 +48,6 @@ void	sig_listener(int signo)
 	if (signo == SIGPIPE)
 		ft_putendl("Server died.");
 	printf("\rGot Signal: '%d'\n", signo);
-	close(g_env.socket_fd);
 	exit(0);
 }
 
