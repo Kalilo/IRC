@@ -138,7 +138,7 @@ char	valid_command(char *str);
 /*
 ** write_msg_to_sock.c
 */
-size_t	write_msg_to_sock(int fd, char *msg);
+size_t	write_msg_to_sock(fd_set *fds, int fd, char *msg);
 
 /*
 ** Bonus Summary:

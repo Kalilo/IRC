@@ -17,10 +17,10 @@ void	manage_client(int k, int sd)
 	char	ret;
 
 	if ((ret = manage_request(k)) == 1)
-		write_msg_to_sock(sd, "SUCCESS\n");
+		write_msg_to_sock(&CLIENT_READ_FD, sd, "SUCCESS\n");
 	else if (ret < 1)
 	{
-		write_msg_to_sock(sd, MSG_ERROR);
+		write_msg_to_sock(&CLIENT_READ_FD, sd, MSG_ERROR);
 		ft_strdel(&MSG_ERROR);
 	}
 	ft_strdel(&MESSAGE);

@@ -12,13 +12,15 @@
 
 #include "../includes/shared.h"
 
-size_t	write_msg_to_sock(int fd, char *msg)
+size_t	write_msg_to_sock(fd_set *fds, int fd, char *msg)
 {
 	size_t	pos;
 	size_t	len;
 	size_t	rlen;
 
 	len = ft_strlen(msg);
+	if (!FD_ISSET(fd, fds))
+		return (-1);
 	pos = 0;
 	while (pos < len)
 	{

@@ -22,7 +22,8 @@ char		send_msg_to_chan(int pos, t_msg msg)
 	chan = ((t_channel *)(chan->content))->users;
 	while (chan)
 	{
-		write_msg_to_sock((((t_user *)(chan->content))->sock), msg.msg);
+		write_msg_to_sock(&CLIENT_READ_FD, (((t_user *)(chan->content))->sock),
+			msg.msg);
 		chan = chan->next;
 	}
 	return (1);
@@ -42,7 +43,7 @@ char		do_msg(int pos, char *msg_details)
 			if (CLIENT_SOCK(k) && CLIENT(k).nick &&
 				!ft_strcmp(CLIENT(k).nick, msg.dest))
 			{
-				write_msg_to_sock(CLIENT_SOCK(k), msg.msg);
+				write_msg_to_sock(&CLIENT_READ_FD, CLIENT_SOCK(k), msg.msg);
 				break ;
 			}
 	}
