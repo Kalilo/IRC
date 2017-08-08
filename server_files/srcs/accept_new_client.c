@@ -24,6 +24,7 @@ void	accept_new_client(void)
 	while (++k < MAX_CLIENTS)
 		if (!CLIENT_SOCK(k))
 		{
+			ft_bzero(&CLIENT_SOCK(k), sizeof(t_user));
 			CLIENT_SOCK(k) = NEW_CLIENT_SOC;
 			break ;
 		}

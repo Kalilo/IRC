@@ -26,6 +26,14 @@ void	manage_client(int k, int sd)
 	ft_strdel(&MESSAGE);
 }
 
+void	remove_client(int pos)
+{
+	if (CLIENT(pos).channel)
+		do_leave(pos, CLIENT(pos).channel);
+	ft_strdel(&CLIENT(pos).nick);
+	ft_bzero(&CLIENT(pos), sizeof(t_user));
+}
+
 void	manage_clients(void)
 {
 	int		k;
@@ -41,7 +49,7 @@ void	manage_clients(void)
 			{
 				ft_putendl("Client disconnected");
 				close(sd);
-				CLIENT_SOCK(k) = 0;
+				remove_client(k);
 			}
 			else
 				manage_client(k, sd);
