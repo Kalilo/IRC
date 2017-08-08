@@ -42,7 +42,13 @@ int		main_socks(int sock)
 
 void	set_shell(char **line)
 {
-	write_to_socket(*line);
+	if (!ft_strncmp(*line, "/connect ", 9))
+	{
+		close(g_env.socket_fd);
+		do_connect(*line + 9);
+	}
+	else
+		write_to_socket(*line);
 	ft_strdel(line);
 	ft_putstr("\rEnter Command: ");
 }
@@ -61,7 +67,7 @@ void	client_loop(void)
 		if (FD_ISSET(STDIN_FILENO, &g_env.fds))
 		{
 			get_next_line(STDIN_FILENO, &line);
-			if (!strcmp(line, "/quit"))
+			if (!ft_strcmp(line, "/quit"))
 				break ;
 			if (!valid_command(line))
 			{
