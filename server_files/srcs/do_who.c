@@ -30,7 +30,7 @@ char	show_channels(int pos)
 	}
 	ft_str_append(&str, "\n");
 	write_msg_to_sock(CLIENT_SOCK(pos), str);
-	free(str);
+	ft_strdel(&str);
 	return (2);
 }
 
@@ -56,6 +56,6 @@ char	do_who(int pos)
 	}
 	ft_str_append(&str, "\n");
 	write_msg_to_sock(CLIENT_SOCK(pos), str);
-	free(str);
+	ft_strdel(&str);
 	return (2);
 }
