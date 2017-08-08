@@ -66,7 +66,8 @@ void	client_loop(void)
 		sock = main_socks(sock);
 		if (FD_ISSET(STDIN_FILENO, &g_env.fds))
 		{
-			get_next_line(STDIN_FILENO, &line);
+			if (get_next_line(STDIN_FILENO, &line) < 1)
+				continue ;
 			if (!ft_strcmp(line, "/quit"))
 				break ;
 			if (!valid_command(line))
