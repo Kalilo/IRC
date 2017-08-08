@@ -35,7 +35,7 @@ char	do_delete(int pos, char *channel)
 	else if (g_env.channels &&
 		ft_strcmp(((t_channel *)(g_env.channels))->name, channel))
 	{
-		if (((t_channel *)(g_env.channels))->users)
+		if (((t_channel *)(g_env.channels->content))->users)
 			RET_ERR(MSG_E04);
 		tmp = g_env.channels;
 		g_env.channels = tmp->next;
