@@ -68,8 +68,7 @@ void	client_loop(void)
 		{
 			if (get_next_line(STDIN_FILENO, &line) < 1)
 				continue ;
-			if (!ft_strcmp(line, "/quit"))
-				break ;
+			BREAK_CON;
 			if (!valid_command(line))
 			{
 				ft_strdel(&line);

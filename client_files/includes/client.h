@@ -39,6 +39,13 @@ typedef struct		s_env
 
 /*
 ** ----------\
+** Defines    |
+** ----------/
+*/
+# define BREAK_CON if(!ft_strcmp(line,"/quit"))break
+
+/*
+** ----------\
 ** Globals    |
 ** ----------/
 */
